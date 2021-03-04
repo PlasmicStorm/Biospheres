@@ -14,8 +14,8 @@ for (var tX = 0; tX < MAP_W; tX++)
 		
 		if (ScreenToTileX(mouse_x,mouse_y) == tX) && ((ScreenToTileY(mouse_x,mouse_y) == tY) )
 		{
-			tileIndex = 2;
-			tileZ -= 2;
+			//tileIndex = 2;
+			//tileZ -= 1;
 		}
 
 		if (tileIndex != 0) draw_sprite(sStatic, tileIndex-1, screenX, screenY+tileZ);
