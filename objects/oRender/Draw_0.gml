@@ -10,7 +10,7 @@ for (var tX = 0; tX < MAP_W; tX++)
 		screenY = TileToScreenY(tX, tY);
 		
 		tileIndex = tileData[TILE.SPRITE];
-		tileZ = tileData[TILE.Z];
+		tileZ = tileData[TILE.Z]// + random_range(-1, 1);
 		
 		if (ScreenToTileX(mouse_x,mouse_y) == tX) && ((ScreenToTileY(mouse_x,mouse_y) == tY) )
 		{
@@ -18,6 +18,7 @@ for (var tX = 0; tX < MAP_W; tX++)
 			//tileZ -= 1;
 		}
 
-		if (tileIndex != 0) draw_sprite(sStatic, tileIndex-1, screenX, screenY+tileZ);
+		if (tileIndex != 0)
+			draw_sprite(sStatic, tileIndex-1, screenX, screenY+tileZ);
 	}
 }

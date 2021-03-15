@@ -6,12 +6,10 @@ function macros() {
 #macro SCREEN_W 512
 #macro SCREEN_H 384
 
-	enum TILE
-	{
-		SPRITE = 0,
-		Z = 1
-	}
-
-
+enum TILE
+{
+	SPRITE = 0,
+	Z = 1
+}
 
 }
