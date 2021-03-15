@@ -10,15 +10,16 @@ for (var tX = 0; tX < MAP_W; tX++)
 		screenY = TileToScreenY(tX, tY);
 		
 		tileIndex = tileData[TILE.SPRITE];
-		tileZ = tileData[TILE.Z]// + random_range(-1, 1);
+		tileZ = tileData[TILE.Z];
 		
 		if (ScreenToTileX(mouse_x,mouse_y) == tX) && ((ScreenToTileY(mouse_x,mouse_y) == tY) )
 		{
-			//tileIndex = 2;
-			//tileZ -= 1;
+			tileIndex = 2;
+			tileZ -= 1;
 		}
-
+		var _hue = 255 - (tX + tY) * 2;
+		var _color = make_colour_hsv(_hue, _hue, _hue);
 		if (tileIndex != 0)
-			draw_sprite(sStatic, tileIndex-1, screenX, screenY+tileZ);
+			draw_sprite_ext(sStatic, tileIndex-1, screenX, screenY - tileZ, 1, 1, 0, _color, 1);
 	}
 }

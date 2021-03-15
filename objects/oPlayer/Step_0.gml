@@ -17,16 +17,15 @@ var _yAdd = (yVel - xVel) * 0.4;
 //Get height diff between current and new 
 //X and y are added seperatly to allow sloped movement
 var _heightdiff = GetHeightDiff(x, y, 0, _yAdd);
-
-if(4 > _heightdiff){
+if(3 > _heightdiff){
 	_newY += _yAdd;
 }
 
 var _heightdiff = GetHeightDiff(x, y, _xAdd, 0);
-
-if(4 > _heightdiff){
+if(3 > _heightdiff){
 	_newX += _xAdd;
 }
 
 x = _newX;
 y = _newY;
+zPos = getTileAtPos(x, y)[TILE.Z];
