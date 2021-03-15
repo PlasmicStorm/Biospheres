@@ -28,4 +28,5 @@ if(3 > _heightdiff){
 
 x = _newX;
 y = _newY;
-zPos = getTileAtPos(x, y)[TILE.Z];
+
+zPos = 0//getTileAtPos(x, y)[TILE.Z];

@@ -2,6 +2,8 @@
 
 layer_set_visible("Map", false);
 layer_set_visible("Height", false);
+layer_set_visible("Instances", false);
+
 global.theMap = ds_grid_create(MAP_W, MAP_H);
 
 var tileMap = layer_tilemap_get_id("Map");
