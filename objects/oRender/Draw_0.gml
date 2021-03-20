@@ -49,7 +49,7 @@ for (var tX = 0; tX < MAP_W; tX++)
 				with (ds_grid_get(objects, _currInstance, 0)) {
 					event_perform(ev_draw, 0);
 				}
-				show_debug_message("Rendering instance " + string(_currInstance) + " Id " + string(ds_grid_get(objects, _currInstance, 0)) + " with local index " + string(ds_grid_get(objects, _currInstance, 1)) + " global index " + string(_sortIndex));
+				//show_debug_message("Rendering instance " + string(_currInstance) + " Id " + string(ds_grid_get(objects, _currInstance, 0)) + " with local index " + string(ds_grid_get(objects, _currInstance, 1)) + " global index " + string(_sortIndex));
 				_currInstance++;
 			}
 			else
