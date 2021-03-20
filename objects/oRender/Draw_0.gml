@@ -1,18 +1,26 @@
 /// @desc Render gaame
 var tileData, screenX, screenY, tileIndex, tileZ;
 
-var instanceIds = layer_get_all_elements(layer_get_id("Instances"));
-var objects = ds_grid_create(array_length(instanceIds), 2);
-
-for(var i = 0; i < array_length(instanceIds); i++){
-	with (instanceIds[i]) {
-		ds_grid_add(objects, i, 0, instanceIds[i]);
-		var _sortIndex = floor(x / TILE_W) * MAP_H + (floor(y / TILE_H * 0.5));
-		ds_grid_add(objects, i, 1, _sortIndex);
-	}
+var instanceIds = array_create(instance_number(parDepth));
+for (i = 0; i < instance_number(parDepth); i += 1) {
+   instanceIds[i] = instance_find(parDepth,i);
 }
 
-ds_grid_sort(objects, 1, true);
+var objects = ds_list_create();
+
+for(var i = 0; i < array_length(instanceIds); i++){
+	var _sortIndex = floor(instanceIds[i].x / TILE_W) * MAP_H + (floor(instanceIds[i].y / TILE_H * 0.5));
+	var _entry = [_sortIndex, instanceIds[i].id];
+	//Insert at the right spot
+	var _insert = 0;		
+	while(ds_list_size(objects) > _insert){
+		if(ds_list_find_value(objects, _insert)[0] > _entry[0])
+			break;
+		else
+			_insert++;
+	}
+	ds_list_insert(objects, _insert, _entry);
+}
 
 var _currInstance = 0;
 for (var tX = 0; tX < MAP_W; tX++)
@@ -41,15 +49,24 @@ for (var tX = 0; tX < MAP_W; tX++)
 		if (tileIndex != 0)
 			draw_sprite_ext(sStatic, tileIndex-1, screenX, screenY - tileZ, 1, 1, 0, _color, 1);
 			
-		//Render all Sprites standing on that tile
+		//Set the sort Index to the current value
 		var _sortIndex = tY + tX * MAP_H;
+		
+		//Render all Sprites standing on that tile
 		while(_currInstance < array_length(instanceIds)){
-			if(_sortIndex >= ds_grid_get(objects, _currInstance, 1)){
+			
+			//Check if object should be rendered
+			if(_sortIndex >= ds_list_find_value(objects, _currInstance)[0]){
+				//Get Instance
+				var _renderTarget = ds_list_find_value(objects, _currInstance)[1];
+				//show_debug_message("Rendering instance " + string(_currInstance) + " Id " + string(_renderTarget) + " with local index " + string(ds_list_find_value(objects, _currInstance)[0]) + " global index " + string(_sortIndex));
+				
 				//Perform object specific draw event
-				with (ds_grid_get(objects, _currInstance, 0)) {
+				with(_renderTarget.id) {
 					event_perform(ev_draw, 0);
 				}
-				//show_debug_message("Rendering instance " + string(_currInstance) + " Id " + string(ds_grid_get(objects, _currInstance, 0)) + " with local index " + string(ds_grid_get(objects, _currInstance, 1)) + " global index " + string(_sortIndex));
+				
+				//Next target
 				_currInstance++;
 			}
 			else
@@ -58,4 +75,4 @@ for (var tX = 0; tX < MAP_W; tX++)
 	}
 }
 
-ds_grid_destroy(objects);
+ds_list_destroy(objects);

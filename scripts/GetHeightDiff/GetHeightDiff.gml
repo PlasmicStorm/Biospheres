@@ -4,6 +4,6 @@ function GetHeightDiff(_x1, _y1, _x2, _y2){
 	
 	if(is_undefined(_tile1) or is_undefined(_tile2))
 		return 999;
-		
-	return abs(abs(_tile1[TILE.Z]) - abs(_tile2[TILE.Z]));
+	//Adding 100 to compensate for values around 0
+	return  (_tile2[TILE.Z] + 100) - (_tile1[TILE.Z] + 100);
 }
