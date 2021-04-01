@@ -1,3 +1,8 @@
+if(global.debugrender) {
+	draw_self();
+	return;
+}
+
 var _x = CordToScreenX(x, y);
 var _y = CordToScreenY(x, y);
 

@@ -1,5 +1,11 @@
 /// @desc Render gaame
 var tileData, screenX, screenY, tileIndex, tileZ;
+if(global.debugrender) {
+	layer_set_visible("Map", true);
+}
+else {
+	layer_set_visible("Map", false);
+}
 
 var instanceIds = array_create(instance_number(parDepth));
 for (i = 0; i < instance_number(parDepth); i += 1) {
@@ -46,9 +52,11 @@ for (var tX = 0; tX < MAP_W; tX++)
 		var _color = make_colour_hsv(_hue, _hue, _hue);
 		
 		//Render Tile
-		if (tileIndex != 0)
-			draw_sprite_ext(sStatic, tileIndex-1, screenX, screenY - tileZ, 1, 1, 0, _color, 1);
-			
+		if(!global.debugrender){
+			if (tileIndex != 0)
+				draw_sprite_ext(sStatic, tileIndex-1, screenX, screenY - tileZ, 1, 1, 0, _color, 1);
+		}
+		
 		//Set the sort Index to the current value
 		var _sortIndex = tY + tX * MAP_H;
 		

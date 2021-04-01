@@ -6,10 +6,15 @@ function macros() {
 #macro SCREEN_W 512
 #macro SCREEN_H 384
 
-enum TILE
-{
+enum TILE {
 	SPRITE = 0,
 	Z = 1
 }
 
+enum SEVERITY {
+	DEBUG = 0,
+	INFO = 1,
+	WARNING = 2,
+	ERROR = 3
+}
 }

@@ -27,8 +27,14 @@ camera_set_view_size(view_camera[0], new_w, new_h);
 #endregion
 
 if (follow != noone){
-	xTo = CordToScreenX(follow.x, follow.y);
-	yTo = CordToScreenY(follow.x, follow.y);
+	if(global.debugrender) {
+		xTo = follow.x;
+		yTo = follow.y;
+	}
+	else {
+		xTo = CordToScreenX(follow.x, follow.y);
+		yTo = CordToScreenY(follow.x, follow.y);
+	}
 }
 
 var vm = matrix_build_lookat(x, y, -10, x, y, 0, 0, 1, 0);

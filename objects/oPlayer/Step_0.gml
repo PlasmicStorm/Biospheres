@@ -8,7 +8,7 @@ yVel *= 0.8;
 
 #region z axis
 //Get ground position
-var _groundTile = getTileAtPos(x, y)
+var _groundTile = getTileAtPos(x, y);
 if(_groundTile != undefined) 
 	var _groundZ = _groundTile[TILE.Z];
 else
@@ -37,36 +37,36 @@ var _newX = x;
 var _newY = y;
 
 //Add movement
-var _xAdd = (xVel + yVel) * 0.4;
-var _yAdd = (yVel - xVel) * 0.4;
+if(global.debugrender) {
+	var _xAdd = xVel * 0.4;
+	var _yAdd = yVel * 0.4;
+}
+else
+{
+	var _xAdd = (xVel + yVel) * 0.4;
+	var _yAdd = (yVel - xVel) * 0.4;
+}
 
 //Get height diff between current and new 
 //X and y are added seperatly to allow sloped movement
+var _groundDistance = _groundZ - zPos;
 
 var _characterSize = (sprite_width/2) * sign(_yAdd);
-var _groundDistance = _groundZ - zPos;
-//Check Height with character size in mind
-var _heightdiff = GetHeightDiff(x, y, 0, _yAdd + _characterSize) + _groundDistance;
-if(3 > _heightdiff){
+if(pointFree(0, _yAdd + _characterSize, _groundDistance, 4)){
 	_newY += _yAdd;
 	//Reverse if new position is invalid
-	var _heightdiff = GetHeightDiff(x, y, 0, _yAdd) + _groundDistance;
-	if(3 < _heightdiff){
-		_newY -= _yAdd;
-	}
+	//if(!pointFree(0, _yAdd + _characterSize, _groundDistance, 4)){
+	//	_newY -= _yAdd;
+	//}
 }
 
-
 var _characterSize = (sprite_width/2) * sign(_xAdd);
-//Check Height with character size in mind
-var _heightdiff = GetHeightDiff(x, y, _xAdd + _characterSize, 0) + _groundDistance;
-if(3 > _heightdiff){
+if(pointFree(_xAdd + _characterSize, 0, _groundDistance, 4)){
 	_newX += _xAdd;
 	//Reverse if new position is invalid
-	var _heightdiff = GetHeightDiff(x, y, _xAdd, 0) + _groundDistance;
-	if(3 < _heightdiff){
-		_newX -= _xAdd;
-	}
+	//if(!pointFree(_xAdd + _characterSize, 0, _groundDistance, 4)){
+	//	_newX -= _xAdd;
+	//}
 }
 
 x = _newX;
