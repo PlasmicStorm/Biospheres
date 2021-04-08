@@ -11,6 +11,11 @@ enum TILE {
 	Z = 1
 }
 
+enum OBJ_TYPE {
+	TILE = 0,
+	SPRITE = 1
+}
+
 enum SEVERITY {
 	DEBUG = 0,
 	INFO = 1,

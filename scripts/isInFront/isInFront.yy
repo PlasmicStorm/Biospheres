@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Coordinates",
-    "path": "folders/Scripts/Coordinates.yy",
+    "name": "render sort",
+    "path": "folders/Scripts/render sort.yy",
   },
   "resourceVersion": "1.0",
-  "name": "CordToScreenY",
+  "name": "isInFront",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -54,19 +54,11 @@ var _groundDistance = _groundZ - zPos;
 var _characterSize = (sprite_width/2) * sign(_yAdd);
 if(pointFree(0, _yAdd + _characterSize, _groundDistance, 4)){
 	_newY += _yAdd;
-	//Reverse if new position is invalid
-	//if(!pointFree(0, _yAdd + _characterSize, _groundDistance, 4)){
-	//	_newY -= _yAdd;
-	//}
 }
 
 var _characterSize = (sprite_width/2) * sign(_xAdd);
 if(pointFree(_xAdd + _characterSize, 0, _groundDistance, 4)){
 	_newX += _xAdd;
-	//Reverse if new position is invalid
-	//if(!pointFree(_xAdd + _characterSize, 0, _groundDistance, 4)){
-	//	_newX -= _xAdd;
-	//}
 }
 
 x = _newX;
