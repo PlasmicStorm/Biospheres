@@ -1,0 +1,1 @@
+draw_text(5,5,"x: " + string(x) + " : " + string(xVel) + "\ny: " + string(y) + " : " + string(yVel) + "\nz: " + string(zPos) + " : " + string(zVel) + "\ndepth: " + string(depth) + "\nairborne: " + string(airborne));

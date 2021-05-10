@@ -1,0 +1,1 @@
+depth=clamp(zPos,-100,99);

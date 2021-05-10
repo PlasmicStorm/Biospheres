@@ -1,1 +1,0 @@
-global.debugrender = !global.debugrender;

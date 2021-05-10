@@ -1,25 +1,16 @@
 function macros() {
-#macro MAP_W 32
-#macro MAP_H 24
-#macro TILE_W 16
-#macro TILE_H 8
-#macro SCREEN_W 512
-#macro SCREEN_H 384
+#macro GCD 32   // Global Cell Dimension
 
-enum TILE {
-	SPRITE = 0,
-	Z = 1
-}
-
-enum OBJ_TYPE {
-	TILE = 0,
-	SPRITE = 1
+enum RENDERSTATE{
+	set,
+	reset,
+	size
 }
 
 enum SEVERITY {
-	DEBUG = 0,
-	INFO = 1,
-	WARNING = 2,
-	ERROR = 3
-}
+	DEBUG,
+	INFO,
+	WARNING,
+	ERROR
+	}
 }
